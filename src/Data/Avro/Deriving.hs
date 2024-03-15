@@ -451,6 +451,8 @@ mkFieldTypeName namespaceBehavior = \case
     -> [t| Float |]
   Schema.Double
     -> [t| Double |]
+  Schema.Bytes (Just (Schema.DecimalB (Schema.Decimal p s)))
+    -> [t| Schema.Decimal $(TH.litT $ TH.numTyLit p) $(TH.litT $ TH.numTyLit s) |]
   Schema.Bytes _
     -> [t| ByteString |]
   Schema.String Nothing

@@ -87,7 +87,7 @@ instance HasAvroSchema Lazy.ByteString where
   schema = Tagged S.Bytes'
 
 instance (KnownNat p, KnownNat s) => HasAvroSchema (D.Decimal p s) where
-  schema = Tagged $ S.Long (Just (DecimalL (S.Decimal pp ss)))
+  schema = Tagged $ S.Bytes (Just (DecimalB (S.Decimal pp ss)))
     where ss = natVal (Proxy :: Proxy s)
           pp = natVal (Proxy :: Proxy p)
 
